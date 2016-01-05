@@ -22,7 +22,7 @@
 			$username = $this->input->post('username','true');
 			$password = $this->input->post('password','true');
 
-			$temp_account = $this->user_model->check_user_account($username,$password)->row();
+			$temp_account = $this->user_model->check_user_account($username, $password)->row();
 			$num_account = count($temp_account);
 
 			$this->form_validation->set_rules('username', 'Username', 'required');
@@ -35,8 +35,8 @@
 									'id_user'=>$temp_account->id_user,
 									'username'=>$temp_account->username,
 									'logged_in'=>true);
-					$this->session->userdata($array_items);
-					redirect('account/view_success_page');
+					$this->session->set_userdata($array_items);
+					redirect(site_url('account/view_success_page'));
 				} else {
 					$this->session->set_flashdata('notification', 'Peringatan : Username & Password tidak cocok');
 					redirect(site_url('account'));
