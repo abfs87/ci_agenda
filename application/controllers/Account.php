@@ -45,6 +45,20 @@
 			}
 			
 		}
+
+		function view_success_page() {
+			$logged_in = $this->session->userdata('logged_in');
+			if (!$logged_in) {
+				redirect(site_url('account'));
+			}
+			$this->load->view('account/success_page');
+			
+		}
+
+		public function logout() {
+			$this->session->sess_destroy();
+			redirect(site_url('account'));
+		}
 	}
 
 ?>
